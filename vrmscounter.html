@@ -1,25 +1,27 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-
 <style>
 p {
   font-family: sans-serif;
   text-align: center;
   font-size: 48px;
   margin-top: 0px;
-  background-color: #ECECEC;
+  background-color: #ECECEC
 }
 </style>
 </head>
 <body>
 
-<p id="vrmscounter"></p>
+<p id="demo"></p>
 
 <script>
+
 // source: https://www.w3schools.com/howto/howto_js_countdown.asp
+
+
 // Set the date we're counting down to
-var countDownDate = new Date("March 1, 2025 00:00:00").getTime();
+var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -37,13 +39,13 @@ var x = setInterval(function() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
   // Output the result in an element with id="demo"
-  document.getElementById("vrmscounter").innerHTML = days + " days | " + hours + " hrs | "
+  document.getElementById("demo").innerHTML = days + " days | " + hours + " hrs | "
   + minutes + " mins | " + seconds + " secs ";
     
   // If the count down is over, write some text 
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("vrmscounter").innerHTML = "WE ARE LIVE!!";
+    document.getElementById("demo").innerHTML = "EXPIRED";
   }
 }, 1000);
 </script>
