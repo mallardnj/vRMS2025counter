@@ -1,0 +1,109 @@
+    <style>
+        .tunic-cd-style-1 {
+        max-width: 500px;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+      }
+      
+      .tunic-cd-style-1 div {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 0px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: #ffffff;
+        padding: 10px;
+        border-radius: 5px;
+        height: 80px;
+      }
+      
+      .tunic-cd-style-1 strong {
+        color: #000000;
+        font-size: 45px;
+      }
+      
+      .tunic-cd-style-1 span {
+        color: #333333;
+        font-size: 18px;
+      }
+      
+      .tunic-cd-style-1 .tunic-cd-end {
+        text-align: center;
+        font-weight: bold;
+        color: #333333 !important;
+        font-size: 25px !important;
+      }
+    </style>
+
+    <div class="tunic-cd-countdown-3813 tunic-cd-style-1">
+      <div class="tunic-cd-days-3813"></div>
+      <div class="tunic-cd-hours-3813"></div>
+      <div class="tunic-cd-minutes-3813"></div>
+      <div class="tunic-cd-seconds-3813"></div>
+    </div>
+
+    <script>
+      const targetDate = "2025-03-01 12:00:00";
+      const countdownSec = document.getElementsByClassName("tunic-cd-countdown-3813");
+      const timerDays = document.getElementsByClassName("tunic-cd-days-3813");
+      const timerHours = document.getElementsByClassName("tunic-cd-hours-3813");
+      const timerMinutes = document.getElementsByClassName("tunic-cd-minutes-3813");
+      const timerSeconds = document.getElementsByClassName("tunic-cd-seconds-3813");
+      const countdownEndNotice = "Countdown Over";
+
+      const dateTime = new Date(targetDate);
+      const yyyy = dateTime.getFullYear();
+      const mm = String(dateTime.getMonth() + 1).padStart(2, "0");
+      const dd = String(dateTime.getDate()).padStart(2, "0");
+      const hour = String(dateTime.getHours()).padStart(2, "0");
+      const min = String(dateTime.getMinutes()).padStart(2, "0");
+      const sec = String(dateTime.getSeconds()).padStart(2, "0");
+
+      const endDate = yyyy + "-" + mm + "-" + dd;
+      const endTime = hour + ":" + min + ":" + sec;
+      const endTimezone = "+00:00";
+      const endText = `<span class="tunic-cd-end">${countdownEndNotice}</span>`;
+
+      const end = new Date(`${endDate}T${endTime}${endTimezone}`).getTime();
+
+      const seconds = 1000;
+      const minutes = seconds * 60;
+      const hours = minutes * 60;
+      const days = hours * 24;
+      const x = setInterval(function() {
+        let now = new Date().getTime();
+        const difference = end - now;
+
+        if (difference < 0) {
+          clearInterval(x);
+          countdownSec.innerHTML = endText;
+          return;
+        }
+
+        Array.from(timerDays).forEach(
+          (dayEl) =>
+          (dayEl.innerHTML =
+            "<strong>" + Math.floor(difference / days) + "</strong><span>Days</span>")
+        );
+        Array.from(timerHours).forEach(
+          (hoursEl) =>
+          (hoursEl.innerHTML =
+            "<strong>" + Math.floor((difference % days) / hours) + "</strong><span>Hours</span>")
+        );
+        Array.from(timerMinutes).forEach(
+          (minutesEl) =>
+          (minutesEl.innerHTML =
+            "<strong>" + Math.floor((difference % hours) / minutes) +
+            "</strong><span>Minutes</span>")
+        );
+        Array.from(timerSeconds).forEach(
+          (secondsEl) =>
+          (secondsEl.innerHTML =
+            "<strong>" + Math.floor((difference % minutes) / seconds) +
+            "</strong><span>Seconds</span>")
+        );
+      }, seconds);
+    </script>
+    
